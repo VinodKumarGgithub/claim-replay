@@ -1,0 +1,18 @@
+{
+  "name": "claim-replay",
+  "version": "0.1.0",
+  "description": "Replay a golden set of pharmacy claims through a new adjudication rule or plan configuration before it goes live: rule-level diffs, latency budgets, and a CI gate.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Vinod Kumar G",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "record": "node src/cli.ts record --plan configs/plan-2026-10.json --claims 5000 --out golden",
+    "replay": "node src/cli.ts replay --release releases/2026-11-pgx.json --golden golden --out reports",
+    "replay:fixed": "node src/cli.ts replay --release releases/2026-11-pgx-fixed.json --golden golden --out reports",
+    "demo": "npm run record && (npm run replay || true) && npm run replay:fixed",
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": { "typescript": "^5.9.3", "@types/node": "^24.10.1" }
+}

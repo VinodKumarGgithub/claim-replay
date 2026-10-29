@@ -1,0 +1,17 @@
+# Every change to a plan configuration or a rule is replayed against the golden claims before it can merge.
+name: replay
+on: [push, pull_request]
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24 }
+      - run: npm test
+      - run: npm run record
+      - name: Replay the release (fails the build if it changes anything it didn't declare, or breaks a latency budget)
+        run: npm run replay:fixed
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: replay-report, path: reports/ }

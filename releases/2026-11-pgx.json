@@ -1,0 +1,14 @@
+{
+  "id": "2026-11-pgx",
+  "description": "Adds a CYP2C19 pharmacogenomic check to clopidogrel claims (soft message, claim still pays). Nothing else should change.",
+  "candidate": "../configs/plan-2026-11.json",
+  "declaredChanges": [
+    "pgx-cyp2c19"
+  ],
+  "budgets": {
+    "claimP95Ms": 15,
+    "ruleP95Ms": {
+      "pgx-cyp2c19": 15
+    }
+  }
+}

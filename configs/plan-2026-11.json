@@ -1,0 +1,137 @@
+{
+  "plan": "DEMO-COMMERCIAL",
+  "version": "2026-11",
+  "drugs": {
+    "atorvastatin": {
+      "ndc": "99999-0001-01",
+      "unitCents": 12
+    },
+    "metformin": {
+      "ndc": "99999-0002-01",
+      "unitCents": 6
+    },
+    "lisinopril": {
+      "ndc": "99999-0003-01",
+      "unitCents": 8
+    },
+    "omeprazole": {
+      "ndc": "99999-0004-01",
+      "unitCents": 15
+    },
+    "sertraline": {
+      "ndc": "99999-0005-01",
+      "unitCents": 10
+    },
+    "clopidogrel": {
+      "ndc": "99999-0006-01",
+      "unitCents": 20
+    },
+    "apixaban": {
+      "ndc": "99999-0007-01",
+      "unitCents": 950
+    },
+    "semaglutide": {
+      "ndc": "99999-0008-01",
+      "unitCents": 98000
+    },
+    "tramadol": {
+      "ndc": "99999-0009-01",
+      "unitCents": 9
+    },
+    "esomeprazole-brand": {
+      "ndc": "99999-0010-01",
+      "unitCents": 780
+    }
+  },
+  "formulary": {
+    "atorvastatin": 1,
+    "metformin": 1,
+    "lisinopril": 1,
+    "omeprazole": 1,
+    "sertraline": 1,
+    "clopidogrel": 1,
+    "tramadol": 2,
+    "apixaban": 3,
+    "semaglutide": 3
+  },
+  "copayCents": {
+    "1": 500,
+    "2": 1500,
+    "3": 4500
+  },
+  "dispensingFeeCents": 150,
+  "rules": [
+    {
+      "id": "eligibility",
+      "type": "eligibility"
+    },
+    {
+      "id": "formulary",
+      "type": "formulary"
+    },
+    {
+      "id": "age-limit",
+      "type": "age",
+      "limits": {
+        "tramadol": {
+          "minAge": 12
+        }
+      }
+    },
+    {
+      "id": "quantity-limit",
+      "type": "quantity",
+      "limits": {
+        "atorvastatin": {
+          "max": 30,
+          "days": 30
+        },
+        "metformin": {
+          "max": 120,
+          "days": 30
+        },
+        "clopidogrel": {
+          "max": 30,
+          "days": 30
+        },
+        "apixaban": {
+          "max": 60,
+          "days": 30
+        },
+        "semaglutide": {
+          "max": 1,
+          "days": 28
+        },
+        "tramadol": {
+          "max": 60,
+          "days": 30
+        }
+      }
+    },
+    {
+      "id": "prior-auth",
+      "type": "prior-auth",
+      "drugs": [
+        "semaglutide"
+      ]
+    },
+    {
+      "id": "refill-too-soon",
+      "type": "refill",
+      "threshold": 0.8
+    },
+    {
+      "id": "pgx-cyp2c19",
+      "type": "pgx",
+      "gene": "CYP2C19",
+      "drugs": [
+        "clopidogrel"
+      ],
+      "phenotypes": [
+        "PM"
+      ],
+      "action": "message",
+      "text": "CYP2C19 poor metabolizer on file: clopidogrel may be less effective. Consider prasugrel or ticagrelor (CPIC guideline)."
+    }
+  ]
+}

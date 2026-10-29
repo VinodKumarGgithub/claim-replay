@@ -1,0 +1,14 @@
+{
+  "id": "2026-11-pgx-fixed",
+  "description": "The same release after restoring the metformin quantity limit.",
+  "candidate": "../configs/plan-2026-11-fixed.json",
+  "declaredChanges": [
+    "pgx-cyp2c19"
+  ],
+  "budgets": {
+    "claimP95Ms": 15,
+    "ruleP95Ms": {
+      "pgx-cyp2c19": 15
+    }
+  }
+}
