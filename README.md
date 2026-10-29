@@ -22,6 +22,8 @@ Golden set: 5000 claims through DEMO-COMMERCIAL 2026-10 → golden/ ({"PAID":415
 
 Full reports: [blocked release](examples/report-blocked.md) · [fixed release](examples/report-pass.md)
 
+Why I built it, and a 3-week pilot: [one-page brief for RxSense](docs/rxsense-brief.pdf)
+
 ## Run it
 
 Node.js 22.18 or newer runs the TypeScript directly. There is nothing to install or build.
